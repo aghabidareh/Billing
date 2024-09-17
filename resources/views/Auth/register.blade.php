@@ -55,7 +55,7 @@
       </form>
 
       <p class="mb-0">
-        <a href="{{ route('login') }}" class="text-center">Login</a>
+        <a href="{{ route('loginPage') }}" class="text-center">Login</a>
       </p>
     </div>
     <!-- /.login-card-body -->

@@ -6,11 +6,12 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function login(Request $request){
+    public function loginPage(Request $request){
         return view("Auth.login");
     }
 
@@ -38,5 +39,17 @@ class AuthController extends Controller
         $user->save();
 
         return redirect()->route('login')->with("success","Your account successfully created!");
+    }
+
+    public function login(Request $request){
+        if(Auth::attempt(["email"=> $request->email,"password"=> $request->password] , true)){
+            if(Auth::user()->is_admin == 1){
+                return redirect()->route('dashboard')->with('success','you logged in.');
+            }else{
+                return redirect()->route("homePage")->with("success","Admin is not Avilable.");
+            }
+        }else{
+            return redirect()->route("loginPage")->with("error","password or email is wrong!");
+        }
     }
 }
