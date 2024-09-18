@@ -24,7 +24,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
             <li class="nav-item">
-                <a href="{{ route('dashboard') }}" class="nav-link">
+                <a href="{{ route('dashboard') }}" class="nav-link @if(Request::segment(2) == 'dashboard') active @endif">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
                     Dashboard
@@ -33,10 +33,10 @@
               </li>
 
           <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
+            <a href="{{ route('parties-type') }}" class="nav-link @if(Request::segment(2) == 'partiesType') active @endif">
+              <i class="nav-icon far fa-user"></i>
               <p>
-                Gallery
+                Parties Type
               </p>
             </a>
           </li>
