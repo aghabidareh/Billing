@@ -25,7 +25,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form class="form-horizontal" action="{{ route('updateParty' , $party->id) }}" method="POST">
+        <form class="form-horizontal" action="{{ route('updatePartyType' , $party->id) }}" method="POST">
             @csrf
           <div class="card-body">
             <div class="form-group row">

@@ -8,7 +8,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Parties Type</h1>
+            <h1>Parties</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -22,36 +22,21 @@
                   <div class="card">
                     <div class="card-header">
                       <h3 class="card-title">List</h3>
-                      <a href={{ route('addPartyType') }} class="btn btn-primary float-right">Add New Party Type</a>
+                      <a href={{ route('addParty') }} class="btn btn-primary float-right">Add New Party</a>
                     </div>
                     <div class="card-body">
                       <table class="table table-bordered">
                         <thead>
                           <tr>
                             <th style="width: 10px">#</th>
-                            <th style="width: 40px">Parties Type Name</th>
+                            <th style="width: 40px">Parties Name</th>
                             <th style="width: 40px">Action</th>
                           </tr>
                         </thead>
                         <tbody>
-                          @foreach ($parties as $party)
-                            <tr>
-                              <td>{{ $party->id }}</td>
-                              <td>{{ $party->parties_type_name }}</td>
-                              <td>
-                                  <a href="{{ route('editPartyType' , $party->id) }}" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
-                                  <a onclick="return confirm('are you sure to delete the record?')" href="{{ route('deletePartyType' , $party->id) }}" class="btn btn-danger"><i class="fas fa-trash alt"></i></a>
-                              </td>
-                            </tr>  
-                          @endforeach
                           
                         </tbody>
                       </table>
-                      <div class="card-footer clearfix">
-                        <ul class="pagination pagination-md m-0 float-right">
-                          {!! $parties->appends(Request::except('page'))->links() !!}
-                        </ul>
-                      </div>
                     </div>
                     <!-- /.card-body -->
 

@@ -7,7 +7,7 @@
         <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-            <h1>Add Party</h1>
+            <h1>Add Party Type</h1>
             </div>
         </div>
         </div><!-- /.container-fluid -->
@@ -25,7 +25,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form class="form-horizontal" action="{{ route('stoerParty') }}" method="POST">
+        <form class="form-horizontal" action="{{ route('stoerPartyType') }}" method="POST">
             @csrf
           <div class="card-body">
             <div class="form-group row">
