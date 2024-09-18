@@ -25,13 +25,16 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form class="form-horizontal">
+        <form class="form-horizontal" action="{{ route('stoerParty') }}" method="POST">
+            @csrf
           <div class="card-body">
             <div class="form-group row">
-              <label for="partiestype" class="col-sm-2 col-form-label">Party Type Name</label>
+              <label for="partiestype" class="col-sm-2 col-form-label">Party Type Name <span class="text-danger">*</span></label>
               <div class="col-sm-8">
-                <input type="text" class="form-control" id="partiestype" placeholder="Enter Party Type Name">
-              </div>
+                <input required type="text" value="{{ old('parties_type_name') }}" name="parties_type_name" class="form-control" id="partiestype" placeholder="Enter Party Type Name">
+                <span class="text-danger">{{ $errors->first('parties_type_name') }}</span>
+                
+            </div>
             </div>
           </div>
           <!-- /.card-body -->

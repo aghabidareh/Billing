@@ -16,6 +16,7 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
+              @include('message')
               <div class="row">
                 <div class="col-md-12">
                   <div class="card">
@@ -23,7 +24,6 @@
                       <h3 class="card-title">List</h3>
                       <a href={{ route('addParty') }} class="btn btn-primary float-right">Add New Party Type</a>
                     </div>
-                    <!-- /.card-header -->
                     <div class="card-body">
                       <table class="table table-bordered">
                         <thead>
@@ -34,27 +34,27 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>1.</td>
-                            <td>Update software</td>
-                            <td>
-                                <a href="#" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
-                                <a href="#" class="btn btn-danger"><i class="fas fa-trash alt"></i></a>
-                            </td>
-                          </tr>
+                          @foreach ($parties as $party)
+                            <tr>
+                              <td>{{ $party->id }}</td>
+                              <td>{{ $party->parties_type_name }}</td>
+                              <td>
+                                  <a href="#" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
+                                  <a href="#" class="btn btn-danger"><i class="fas fa-trash alt"></i></a>
+                              </td>
+                            </tr>  
+                          @endforeach
+                          
                         </tbody>
                       </table>
+                      <div class="card-footer clearfix">
+                        <ul class="pagination pagination-md m-0 float-right">
+                          {!! $parties->appends(Request::except('page'))->links() !!}
+                        </ul>
+                      </div>
                     </div>
                     <!-- /.card-body -->
-                    <div class="card-footer clearfix">
-                      <ul class="pagination pagination-sm m-0 float-right">
-                        <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                      </ul>
-                    </div>
+
                   </div>
 
                   <!-- /.card -->
