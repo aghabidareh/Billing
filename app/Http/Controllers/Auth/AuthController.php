@@ -52,4 +52,9 @@ class AuthController extends Controller
             return redirect()->route("loginPage")->with("error","password or email is wrong!");
         }
     }
+
+    public function logout(){
+        Auth::logout();
+        return redirect()->route("homePage");
+    }
 }
