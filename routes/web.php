@@ -23,8 +23,14 @@ Route::group(['middleware' => 'admin'] , function(){
         Route::get('dashboard' , [DashboardController::class ,'dashboard'])->name('dashboard');
         Route::prefix('partiesType')->group(function(){
             Route::get('/', [PartiesController::class ,'partiesType'])->name('parties-type');
+
             Route::get('add' , [PartiesController::class ,'add'])->name('addParty');
             Route::post('add' , [PartiesController::class ,'store'])->name('stoerParty');
+
+            Route::get('edit/{id}', [PartiesController::class ,'edit'])->name('editParty');
+            Route::post('update/{id}', [PartiesController::class ,'update'])->name('updateParty');
+        
+            Route::get('delete/{id}' , [PartiesController::class ,'delete'])->name('deleteParty');
         });
     });
 });

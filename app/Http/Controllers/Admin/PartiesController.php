@@ -29,4 +29,23 @@ class PartiesController extends Controller
 
         return redirect()->route("parties-type")->with("success","Party Type Successfully Created!");
     }
+
+    public function edit($id){
+        $party = PartyType::find($id);
+        return view("Admin.PartiesType.edit", compact("party"));
+    }
+    public function update(Request $request, $id){
+        $party = PartyType::find($id);
+        $party->parties_type_name = trim($request->parties_type_name);
+        $party->save();
+
+        return redirect()->route("parties-type")->with("success","Record Successfully Updated!");
+    }
+
+    public function delete($id){
+        $parties = PartyType::find($id);
+        $parties->delete();
+
+        return redirect()->route("parties-type")->with("success","Record Successfully Deleted!");
+    }
 }

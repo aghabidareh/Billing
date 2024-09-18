@@ -39,8 +39,8 @@
                               <td>{{ $party->id }}</td>
                               <td>{{ $party->parties_type_name }}</td>
                               <td>
-                                  <a href="#" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
-                                  <a href="#" class="btn btn-danger"><i class="fas fa-trash alt"></i></a>
+                                  <a href="{{ route('editParty' , $party->id) }}" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
+                                  <a onclick="return confirm('are you sure to delete the record?')" href="{{ route('deleteParty' , $party->id) }}" class="btn btn-danger"><i class="fas fa-trash alt"></i></a>
                               </td>
                             </tr>  
                           @endforeach
