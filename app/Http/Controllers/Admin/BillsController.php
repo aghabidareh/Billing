@@ -49,11 +49,32 @@ class BillsController extends Controller
     }
 
     public function edit($id){
-        return view('Admin.Bills.edit');
+        $partiesType = PartyType::get();
+        $record = Bill::find($id);
+
+        return view('Admin.Bills.edit' , compact(['record' , 'partiesType']));
     }
 
     public function update(Request $request, $id){
-        die;
+        $saver = Bill::find($id);
+        $saver->parties_type_id = $request->parties_type_id;
+        $saver->invoice_date = $request->invoice_date;
+        $saver->invoice_number = $request->invoice_number;
+        $saver->item_description = $request->item_description;
+        $saver->total_amount = $request->total_amount;
+        $saver->cgst_rate = $request->cgst_rate;
+        $saver->sgst_rate = $request->sgst_rate;
+        $saver->igst_rate = $request->igst_rate;
+        $saver->cgst_amount = $request->cgst_amount;
+        $saver->sgst_amount = $request->sgst_amount;
+        $saver->igst_amount = $request->igst_amount;
+        $saver->tax_amount = $request->tax_amount;
+        $saver->net_amount = $request->net_amount;
+        $saver->declration = trim( $request->declration );
+
+        $saver->save();
+
+        return redirect()->route('bills')->with('success','Bill Successfully Updated!');
     }
 
     public function delete($id){

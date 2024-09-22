@@ -7,7 +7,7 @@
         <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-            <h1>Edit Bill</h1>
+            <h1>Add Bill</h1>
             </div>
         </div>
         </div><!-- /.container-fluid -->
@@ -25,7 +25,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form class="form-horizontal" action="{{ route('updateBill' , $party->id) }}" method="POST">
+        <form class="form-horizontal" action="{{ route('updateBill' , $record->id) }}" method="POST">
             @csrf
           <div class="card-body">
 
@@ -35,76 +35,115 @@
                     <select name="parties_type_id" class="form-control" required>
                         <option value="">Select Parties Type Name</option>
                         @foreach ($partiesType as $partyType)
-                            <option {{ ($party->parties_type_id == $partyType->id) ? 'selected':'' }} value="{{ $partyType->id }}">{{ $partyType->parties_type_name }}</option>
+                            <option {{ ($record->parties_type_id == $partyType->id) ? 'selected':'' }} value="{{ $partyType->id }}">{{ $partyType->parties_type_name }}</option>
                         @endforeach
                     </select>
                   </div>
               </div>
 
             <div class="form-group row">
-              <label for="fullName" class="col-sm-2 col-form-label">Full Name <span class="text-danger">*</span></label>
-                <div class="col-sm-8">
-                    <input required type="text" value="{{ $party->full_name }}" name="full_name" class="form-control" id="fullName" placeholder="Enter Your Full Name">
-                    <span class="text-danger">{{ $errors->first('full_name') }}</span>
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="phoneNumber" class="col-sm-2 col-form-label">Phone Number <span class="text-danger">*</span></label>
+                <label for="invoice_date" class="col-sm-2 col-form-label">Invoice Date <span class="text-danger">*</span></label>
                   <div class="col-sm-8">
-                      <input required type="text" value="{{ $party->phone_number }}" name="phone_number" class="form-control" id="phoneNumber" placeholder="Enter Your Phone Number">
-                      <span class="text-danger">{{ $errors->first('phone_number') }}</span>
+                      <input required type="date" value="{{ $record->invoice_date }}" name="invoice_date" class="form-control" id="invoice_date">
+                      <span class="text-danger">{{ $errors->first('invoice_date') }}</span>
                   </div>
             </div>
 
             <div class="form-group row">
-                <label for="address" class="col-sm-2 col-form-label">Address <span class="text-danger">*</span></label>
+                <label for="invoice_number" class="col-sm-2 col-form-label">Invoice Number <span class="text-danger">*</span></label>
                   <div class="col-sm-8">
-                      <input required type="text" value="{{ $party->address }}" name="address" class="form-control" id="address" placeholder="Enter Your Address">
-                      <span class="text-danger">{{ $errors->first('address') }}</span>
+                      <input required type="text" value="{{ $record->invoice_number }}" name="invoice_number" class="form-control" id="invoice_number" placeholder="Enter Invoice Number">
+                      <span class="text-danger">{{ $errors->first('invoice_number') }}</span>
                   </div>
             </div>
 
             <div class="form-group row">
-                <label for="accountHolderName" class="col-sm-2 col-form-label">Account Holder Name <span class="text-danger">*</span></label>
+                <label for="item_description" class="col-sm-2 col-form-label">Item Description <span class="text-danger">*</span></label>
                   <div class="col-sm-8">
-                      <input required type="text" value="{{ $party->account_holder_name }}" name="account_holder_name" class="form-control" id="accountHolderName" placeholder="Enter Your Account Holder Name">
-                      <span class="text-danger">{{ $errors->first('account_holder_name') }}</span>
+                    <textarea name="item_description" id="item_description"class="form-control" required>{{ $record->item_description }}</textarea>
+                      <span class="text-danger">{{ $errors->first('item_description') }}</span>
                   </div>
             </div>
 
             <div class="form-group row">
-                <label for="accountNumber" class="col-sm-2 col-form-label">Account Number <span class="text-danger">*</span></label>
+                <label for="total_amount" class="col-sm-2 col-form-label">Total Amount <span class="text-danger">*</span></label>
                   <div class="col-sm-8">
-                      <input required type="text" value="{{ $party->account_number }}" name="account_number" class="form-control" id="accountNumber" placeholder="Enter Your Account Number">
-                      <span class="text-danger">{{ $errors->first('account_number') }}</span>
+                      <input required type="number" value="{{ $record->total_amount }}" name="total_amount" class="form-control" id="total_amount" placeholder="Enter Amount Total">
+                      <span class="text-danger">{{ $errors->first('total_amount') }}</span>
                   </div>
             </div>
 
             <div class="form-group row">
-                <label for="bankName" class="col-sm-2 col-form-label">Bank Name <span class="text-danger">*</span></label>
+                <label for="cgst_rate" class="col-sm-2 col-form-label">CGST Rate <span class="text-danger">*</span></label>
                   <div class="col-sm-8">
-                      <input required type="text" value="{{ $party->bank_name }}" name="bank_name" class="form-control" id="bankName" placeholder="Enter Your Bank Name">
-                      <span class="text-danger">{{ $errors->first('bank_name') }}</span>
+                      <input required type="number" value="{{ $record->cgst_rate }}" name="cgst_rate" class="form-control" id="cgst_rate" placeholder="Enter CGST Rate">
+                      <span class="text-danger">{{ $errors->first('cgst_rate') }}</span>
                   </div>
             </div>
 
             <div class="form-group row">
-                <label for="IFSCCODE" class="col-sm-2 col-form-label">IFSC CODE <span class="text-danger">*</span></label>
+                <label for="sgst_rate" class="col-sm-2 col-form-label">SGST Rate <span class="text-danger">*</span></label>
                   <div class="col-sm-8">
-                      <input required type="text" value="{{ $party->ifsc_code }}" name="ifsc_code" class="form-control" id="IFSCCODE" placeholder="Enter Your IFSC CODE">
-                      <span class="text-danger">{{ $errors->first('ifsc_code') }}</span>
+                      <input required type="number" value="{{ $record->sgst_rate }}" name="sgst_rate" class="form-control" id="sgst_rate" placeholder="Enter SGST Rate">
+                      <span class="text-danger">{{ $errors->first('sgst_rate') }}</span>
                   </div>
             </div>
 
             <div class="form-group row">
-                <label for="brachAddress" class="col-sm-2 col-form-label">Branch Address <span class="text-danger">*</span></label>
+                <label for="igst_rate" class="col-sm-2 col-form-label">IGST Rate <span class="text-danger">*</span></label>
                   <div class="col-sm-8">
-                      <input required type="text" value="{{ $party->brach_address }}" name="brach_address" class="form-control" id="brachAddress" placeholder="Enter Your Branch Address">
-                      <span class="text-danger">{{ $errors->first('brach_address') }}</span>
+                      <input required type="number" value="{{ $record->igst_rate }}" name="igst_rate" class="form-control" id="igst_rate" placeholder="Enter IGST Rate">
+                      <span class="text-danger">{{ $errors->first('igst_rate') }}</span>
                   </div>
             </div>
-            
+
+            <div class="form-group row">
+                <label for="cgst_amount" class="col-sm-2 col-form-label">CGST Amount <span class="text-danger">*</span></label>
+                  <div class="col-sm-8">
+                      <input required type="number" value="{{ $record->cgst_amount }}" name="cgst_amount" class="form-control" id="cgst_amount" placeholder="Enter CGST Amount">
+                      <span class="text-danger">{{ $errors->first('cgst_amount') }}</span>
+                  </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="sgst_amount" class="col-sm-2 col-form-label">SGST Amount <span class="text-danger">*</span></label>
+                  <div class="col-sm-8">
+                      <input required type="number" value="{{ $record->sgst_amount }}" name="sgst_amount" class="form-control" id="sgst_amount" placeholder="Enter SGST Amount">
+                      <span class="text-danger">{{ $errors->first('sgst_amount') }}</span>
+                  </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="igst_amount" class="col-sm-2 col-form-label">IGST Amount <span class="text-danger">*</span></label>
+                  <div class="col-sm-8">
+                      <input required type="number" value="{{ $record->igst_amount }}" name="igst_amount" class="form-control" id="igst_amount" placeholder="Enter IGST Amount">
+                      <span class="text-danger">{{ $errors->first('igst_amount') }}</span>
+                  </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="tax_amount" class="col-sm-2 col-form-label">Tax Amount <span class="text-danger">*</span></label>
+                  <div class="col-sm-8">
+                      <input required type="number" value="{{ $record->tax_amount }}" name="tax_amount" class="form-control" id="tax_amount" placeholder="Enter Tax Amount">
+                      <span class="text-danger">{{ $errors->first('tax_amount') }}</span>
+                  </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="net_amount" class="col-sm-2 col-form-label">Net Amount <span class="text-danger">*</span></label>
+                  <div class="col-sm-8">
+                      <input required type="number" value="{{ $record->net_amount }}" name="net_amount" class="form-control" id="net_amount" placeholder="Enter Net Amount">
+                      <span class="text-danger">{{ $errors->first('net_amount') }}</span>
+                  </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="declration" class="col-sm-2 col-form-label">Declration <span class="text-danger">*</span></label>
+                  <div class="col-sm-8">
+                    <textarea name="declration" id="declration"class="form-control" required>{{ $record->declration }}</textarea>
+                      <span class="text-danger">{{ $errors->first('declration') }}</span>
+                  </div>
+            </div>
             
 
           </div>
