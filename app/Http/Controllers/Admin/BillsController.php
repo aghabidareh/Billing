@@ -57,6 +57,10 @@ class BillsController extends Controller
     }
 
     public function delete($id){
-        die;
+        $bill = Bill::find($id);
+
+        $bill->delete();
+
+        return redirect()->route('bills')->with('success','the Bill Successfully Deleted!');
     }
 }
