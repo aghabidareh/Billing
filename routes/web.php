@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\PartiesController;
-use App\Http\Controllers\Admin\PartyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Home\HomeController;
+use App\Http\Controllers\Admin\BillsController;
+use App\Http\Controllers\Admin\PartyController;
+use App\Http\Controllers\Admin\PartiesController;
+use App\Http\Controllers\Admin\DashboardController;
 
 Route::namespace("authentication")->group(function () {
     Route::get('/' , [AuthController::class , 'loginPage'])->name('loginPage');
@@ -42,6 +43,17 @@ Route::group(['middleware' => 'admin'] , function(){
             Route::post('update/{id}', [PartyController::class ,'update'])->name('updateParty');
         
             Route::get('delete/{id}' , [PartyController::class ,'delete'])->name('deleteParty');
+        });
+        Route::prefix('bills')->group(function(){
+            Route::get('/' , [BillsController::class ,'bills'])->name('bills');
+
+            Route::get('add' , [BillsController::class ,'add'])->name('addBill');
+            Route::post('add' , [BillsController::class ,'store'])->name('stoerBill');
+
+            Route::get('edit/{id}', [BillsController::class ,'edit'])->name('editBill');
+            Route::post('update/{id}', [BillsController::class ,'update'])->name('updateBill');
+        
+            Route::get('delete/{id}' , [BillsController::class ,'delete'])->name('deleteBill');
         });
     });
 });
