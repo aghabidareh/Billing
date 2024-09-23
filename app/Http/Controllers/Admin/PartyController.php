@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 
 class PartyController extends Controller
 {
-    public function parties(){
-        $records = Party::frontRecors();
+    public function parties(Request $request){
+        $records = Party::frontRecors($request);
 
         return view('Admin.Parties.list' , compact('records'));
     }
