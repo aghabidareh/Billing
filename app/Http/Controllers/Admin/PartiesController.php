@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 
 class PartiesController extends Controller
 {
-    public function partiesType(){
-        $parties = PartyType::orderBy("id","desc")->paginate(5);
+    public function partiesType(Request $request){
+        $parties = PartyType::getAllRecord($request);
 
         return view("Admin.PartiesType.list" , compact("parties"));
     }

@@ -19,6 +19,33 @@
               @include('message')
               <div class="row">
                 <div class="col-md-12">
+
+                  <div class="card">
+                    <div class="card-header">
+                      <h1 class="card-title">Search Party Type</h1>
+                    </div>
+                    <form action="" method="GET">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="form-group col-md-2">
+                            <label for="id">ID</label>
+                            <input type="text" name="id" id="id" class="form-control" value="{{ Request()->id }}" placeholder="ID">
+                          </div>
+                          <div class="form-group col-md-4">
+                            <label for="parties_type_name">Party Type Name</label>
+                            <input type="text" name="parties_type_name" id="parties_type_name" value="{{ Request()->parties_type_name }}" class="form-control" placeholder="Party Type Name">
+                          </div>
+                          <div style="clear: both;"></div>
+                          <br>
+                          <div class="col-md-12">
+                            <button class="btn btn-primary" type="submit">Search</button>
+                            <a href="{{ route('parties-type') }}" class="btn btn-success">Reset</a>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+
                   <div class="card">
                     <div class="card-header">
                       <h3 class="card-title">List</h3>
