@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 
 class BillsController extends Controller
 {
-    public function bills(){
-        $records = Bill::getAllRecord();
+    public function bills(Request $request){
+        $records = Bill::getAllRecord($request);
 
         return view('Admin.Bills.list' , compact('records'));
     }

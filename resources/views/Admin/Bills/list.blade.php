@@ -19,6 +19,37 @@
               @include('message')
               <div class="row">
                 <div class="col-md-12">
+
+                  <div class="card">
+                    <div class="card-header">
+                      <h1 class="card-title">Search Party</h1>
+                    </div>
+                    <form action="" method="GET">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="form-group col-md-1">
+                            <label for="id">ID</label>
+                            <input type="text" name="id" id="id" class="form-control" value="{{ Request()->id }}" placeholder="ID">
+                          </div>
+                          <div class="form-group col-md-5">
+                            <label for="parties_type_name">Parties Type Name</label>
+                            <input type="text" name="parties_type_name" id="parties_type_name" value="{{ Request()->parties_type_name }}" class="form-control" placeholder="Parties Type Name">
+                          </div>
+                          <div class="form-group col-md-5">
+                            <label for="tax_amount">Tax Amount</label>
+                            <input type="text" name="tax_amount" id="tax_amount" value="{{ Request()->tax_amount }}" class="form-control" placeholder="Tax Amount">
+                          </div>
+                          <div style="clear: both;"></div>
+                          <br>
+                          <div class="col-md-12">
+                            <button class="btn btn-primary" type="submit">Search</button>
+                            <a href="{{ route('parties') }}" class="btn btn-success">Reset</a>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+
                   <div class="card">
                     <div class="card-header">
                       <h3 class="card-title">List</h3>
