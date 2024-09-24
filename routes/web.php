@@ -68,3 +68,8 @@ Route::group(['middleware' => 'admin'] , function(){
 Route::prefix('home')->group(function(){
     Route::get('/', [HomeController::class ,'homePage'])->name('homePage');
 });
+
+
+// be careful for your self
+//  LOVE
+//
