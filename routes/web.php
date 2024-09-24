@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\BillsController;
 use App\Http\Controllers\Admin\PartyController;
 use App\Http\Controllers\Admin\PartiesController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\Account\MyAccountController;
 
 Route::namespace("authentication")->group(function () {
     Route::get('/' , [AuthController::class , 'loginPage'])->name('loginPage');
@@ -31,7 +32,7 @@ Route::group(['middleware' => 'admin'] , function(){
 
             Route::get('edit/{id}', [PartiesController::class ,'edit'])->name('editPartyType');
             Route::post('update/{id}', [PartiesController::class ,'update'])->name('updatePartyType');
-        
+
             Route::get('delete/{id}' , [PartiesController::class ,'delete'])->name('deletePartyType');
         });
         Route::prefix('parties')->group(function(){
@@ -41,7 +42,7 @@ Route::group(['middleware' => 'admin'] , function(){
 
             Route::get('edit/{id}', [PartyController::class ,'edit'])->name('editParty');
             Route::post('update/{id}', [PartyController::class ,'update'])->name('updateParty');
-        
+
             Route::get('delete/{id}' , [PartyController::class ,'delete'])->name('deleteParty');
         });
         Route::prefix('bills')->group(function(){
@@ -52,8 +53,12 @@ Route::group(['middleware' => 'admin'] , function(){
 
             Route::get('edit/{id}', [BillsController::class ,'edit'])->name('editBill');
             Route::post('update/{id}', [BillsController::class ,'update'])->name('updateBill');
-        
+
             Route::get('delete/{id}' , [BillsController::class ,'delete'])->name('deleteBill');
+        });
+        Route::prefix('my-account')->group(function(){
+            Route::get('/' , [MyAccountController::class ,'myAccount'])->name('my-account');
+            Route::post('/' , [MyAccountController::class ,'updateAccount'])->name('update-account');
         });
     });
 });
