@@ -50,7 +50,9 @@
                     <div class="card-header">
                       <h3 class="card-title">List</h3>
                       <a href={{ route('addPartyType') }} class="btn btn-primary float-right">Add New Party Type</a>
+                      <a href={{ route('pdf-generator') }} class="btn btn-warning float-right mr-2">PDF Generator</a>
                     </div>
+
                     <div class="card-body">
                       <table class="table table-bordered">
                         <thead>
@@ -69,9 +71,9 @@
                                   <a href="{{ route('editPartyType' , $party->id) }}" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
                                   <a onclick="return confirm('are you sure to delete the record?')" href="{{ route('deletePartyType' , $party->id) }}" class="btn btn-danger"><i class="fas fa-trash alt"></i></a>
                               </td>
-                            </tr>  
+                            </tr>
                           @endforeach
-                          
+
                         </tbody>
                       </table>
                       <div class="card-footer clearfix">

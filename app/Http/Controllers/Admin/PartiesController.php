@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\PartyType;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class PartiesController extends Controller
@@ -47,5 +48,17 @@ class PartiesController extends Controller
         $parties->delete();
 
         return redirect()->route("parties-type")->with("success","Record Successfully Deleted!");
+    }
+
+    public function pdfGenerator(){
+        $getAllRecord = PartyType::get();
+        $data = [
+            'title'=> 'welocome to github.com/aghabidareh :)',
+            'date'=> date('m/d/Y'),
+            'parties' => $getAllRecord
+        ];
+        $pdf = PDF::loadView('PartiesTypePDF', $data);
+
+        return $pdf->download('aghabdareh.pdf');
     }
 }

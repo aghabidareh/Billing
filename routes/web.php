@@ -34,6 +34,8 @@ Route::group(['middleware' => 'admin'] , function(){
             Route::post('update/{id}', [PartiesController::class ,'update'])->name('updatePartyType');
 
             Route::get('delete/{id}' , [PartiesController::class ,'delete'])->name('deletePartyType');
+
+            Route::get('pdf-generator', [PartiesController::class ,'pdfGenerator'])->name('pdf-generator');
         });
         Route::prefix('parties')->group(function(){
             Route::get("/" , [PartyController::class ,"parties"])->name("parties");
